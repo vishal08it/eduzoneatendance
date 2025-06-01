@@ -15,7 +15,7 @@ export default function Header() {
   const handleLogout = () => {
     localStorage.removeItem('user');
     setUser(null);
-    router.push('/login');
+    router.push('/');
   };
 
   const handleLogin = () => {
