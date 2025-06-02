@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Header from '../components/Header';
+import styles from '../styles/Home.module.css';
 
 export default function LoginPage() {
   const [mobile, setMobile] = useState('');
@@ -24,24 +25,39 @@ export default function LoginPage() {
     }
   };
 
+  // Close and redirect to home
+  const handleClose = () => {
+    router.push('/');
+  };
+
   return (
     <>
       <Header />
-      <div style={{ padding: '20px' }}>
-        <h2>Login</h2>
-        <input
-          type="text"
-          value={mobile}
-          onChange={(e) => setMobile(e.target.value)}
-          placeholder="Mobile"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button onClick={handleLogin}>Login</button>
+      <div className={styles.overlay}>
+        <div className={styles.popup}>
+          <button className={styles.closeButton} onClick={handleClose}>
+            &times;
+          </button>
+          <img src="/logo.jpg" alt="Logo" className={styles.logo} />
+          <h2 className={styles.title}>Login</h2>
+          <input
+            type="text"
+            value={mobile}
+            onChange={(e) => setMobile(e.target.value)}
+            placeholder="Mobile"
+            className={styles.input}
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            className={styles.input}
+          />
+          <button className={styles.button} onClick={handleLogin}>
+            Login
+          </button>
+        </div>
       </div>
     </>
   );
